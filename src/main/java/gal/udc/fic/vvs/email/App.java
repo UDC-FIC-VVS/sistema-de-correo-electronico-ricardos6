@@ -27,6 +27,14 @@ public class App {
 			Carpeta trabajoVVS = new Carpeta("VVS");
 			trabajoVVS.añadir(correo);
 			
+			Texto texto = new Texto("Descarga", "Aqui tienes la cancion que has descargadp");
+			MensajeAbstracto mensaje = new Mensaje(texto);
+			Archivo archivo = new Audio("Audio Nuevo", "Cancion");
+
+			Correo correo2 = new Adjunto(mensaje, archivo);
+			
+			trabajoVVS.añadir(correo2);
+			
 			Carpeta trabajoDepartamento = new Carpeta("Departamento");
 			Carpeta trabajoGeneral = new Carpeta("Xeral");
 			Carpeta listas = new Carpeta("Listas");
