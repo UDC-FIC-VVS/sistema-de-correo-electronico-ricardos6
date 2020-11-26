@@ -21,7 +21,12 @@ public class App {
 			Carpeta personalAmigos = new Carpeta("Amizades");
 			Carpeta personalFamilia = new Carpeta("Familia");
 			Carpeta trabajo = new Carpeta("Traballo");
+			
+			Correo correo = new Mensaje(new Texto("Duda VVS", "Hola tengo una duda de vvs"));
+			
 			Carpeta trabajoVVS = new Carpeta("VVS");
+			trabajoVVS.añadir(correo);
+			
 			Carpeta trabajoDepartamento = new Carpeta("Departamento");
 			Carpeta trabajoGeneral = new Carpeta("Xeral");
 			Carpeta listas = new Carpeta("Listas");
