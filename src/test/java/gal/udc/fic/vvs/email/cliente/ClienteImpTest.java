@@ -1,5 +1,7 @@
 package gal.udc.fic.vvs.email.cliente;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import gal.udc.fic.vvs.email.archivador.Archivador;
@@ -18,20 +20,25 @@ public class ClienteImpTest {
 	 * No se como probar las acciones de click de raton, pero como nuestro oobjetivo no es probar la interfaz
 	 * asumo que no hara falta probarlo
 	 * 
+	 * Si queremos obtener el archivador desde
+	 * 
 	 * @throws OperacionInvalida
 	 */
-	@Test(expected = Test.None.class /* no exception expected */)
+	@Test
 	public void testClienteCreacion() throws OperacionInvalida {
 		
-		Texto texto = new Texto("Nombre texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Carpeta carpeta = new Carpeta("Carpeta");
-		carpeta.añadir(mensaje);
+		/*
+		 * Texto texto = new Texto("Nombre texto", "Contenido texto"); MensajeAbstracto
+		 * mensaje = new Mensaje(texto); Carpeta carpeta = new Carpeta("Carpeta");
+		 * carpeta.añadir(mensaje);
+		 * 
+		 * Cliente cliente = new ClienteImp(carpeta);
+		 * 
+		 * Archivador archivador = new ArchivadorSimple("Archivador", 100);
+		 * archivador.almacenarCorreo(carpeta);
+		 * 
+		 * cliente.agregarArchivador(archivador);
+		 */
 		
-		Cliente cliente = new ClienteImp(carpeta);
-		
-		Archivador archivador = new ArchivadorSimple("Archivador", 100);
-		
-		cliente.agregarArchivador(archivador);
 	}
 }
