@@ -13,7 +13,7 @@ public class App {
 	
 	public static void main(String[] args) {
 		
-		System.out.println("Hello World!");
+		//System.out.println("Hello World!");
 
 		try {
 			Carpeta global = new Carpeta("O meu correo");
@@ -21,6 +21,7 @@ public class App {
 			Carpeta personalAmigos = new Carpeta("Amizades");
 			Carpeta personalFamilia = new Carpeta("Familia");
 			Carpeta trabajo = new Carpeta("Traballo");
+			CarpetaLimitada personalLimitada = new CarpetaLimitada(personal, 5000);
 			
 			Correo correo = new Mensaje(new Texto("Duda VVS", "Hola tengo una duda de vvs"));
 			
@@ -44,6 +45,8 @@ public class App {
 			global.añadir(listas);
 			global.añadir(trabajo);
 			global.añadir(new CarpetaLimitada(personal, 3));
+			
+			global.añadir(personalLimitada);
 
 			listas.añadir(listasPF);
 			listas.añadir(listasVA);

@@ -1,20 +1,17 @@
 package gal.udc.fic.vvs.email;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-{
-    /**
-     * Rigorous Test :-)
-     */
-    @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
-    }
+public class AppTest {
+	/**
+	 * Rigorous Test :-)
+	 */
+	@Test(expected = Test.None.class /* no exception expected */)
+	public void testApp() {
+		String[] args = null;		
+		App.main(args);
+	}
 }
