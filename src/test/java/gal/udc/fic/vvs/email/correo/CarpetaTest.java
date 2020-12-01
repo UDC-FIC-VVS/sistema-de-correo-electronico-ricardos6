@@ -2,9 +2,6 @@ package gal.udc.fic.vvs.email.correo;
 
 import static org.junit.Assert.assertEquals;
 
-import java.awt.List;
-import java.util.Vector;
-
 import org.junit.Test;
 
 import gal.udc.fic.vvs.email.archivo.Texto;
@@ -240,8 +237,6 @@ public class CarpetaTest {
 		
 		Carpeta carpeta = new Carpeta("Carpeta");
 		Carpeta carpeta2 = new Carpeta("Carpeta2");
-		Texto texto = new Texto("contido", "Contido do correo electrónico.");
-		Mensaje mensaje = new Mensaje(texto);
 		Mensaje mensaje2 = new Mensaje(new Texto("Nombre 2", "Texto 2"));
 		
 		carpeta.añadir(carpeta2);

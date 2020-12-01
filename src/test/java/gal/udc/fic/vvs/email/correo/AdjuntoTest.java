@@ -143,7 +143,6 @@ public class AdjuntoTest {
 		Texto texto = new Texto("nombre texto", "Contenido texto");
 		MensajeAbstracto mensaje = new Mensaje(texto);
 		Archivo archivo = new Audio("nombre audio", "contenido audio");
-		Mensaje mensaje2 = new Mensaje(new Texto("", ""));
 
 		Correo correo = new Adjunto(mensaje, archivo);
 
