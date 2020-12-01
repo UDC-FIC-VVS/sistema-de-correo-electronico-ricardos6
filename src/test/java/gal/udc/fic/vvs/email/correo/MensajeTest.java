@@ -2,8 +2,6 @@ package gal.udc.fic.vvs.email.correo;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Collection;
-
 import org.junit.Test;
 
 import gal.udc.fic.vvs.email.archivo.Texto;
@@ -60,10 +58,8 @@ public class MensajeTest {
 		Texto texto = new Texto("Nombre Texto", "Contenido texto");
 		MensajeAbstracto mensaje = new Mensaje(texto);
 		
-		Collection resultadoBuscar = mensaje.buscar("texto");
-		
-		assertEquals(1, resultadoBuscar.size());
-		assertEquals(true, resultadoBuscar.contains(mensaje));
+		assertEquals(1, mensaje.buscar("texto").size());
+		assertEquals(true, mensaje.buscar("texto").contains(mensaje));
 	}
 	
 	@Test
@@ -72,8 +68,6 @@ public class MensajeTest {
 		Texto texto = new Texto("Nombre Texto", "Contenido texto");
 		MensajeAbstracto mensaje = new Mensaje(texto);
 		
-		Collection resultadoBuscar = mensaje.buscar("no encuentra");
-		
-		assertEquals(true, resultadoBuscar.isEmpty());
+		assertEquals(true, mensaje.buscar("no encuentra").isEmpty());
 	}
 }

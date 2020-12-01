@@ -77,8 +77,6 @@ public class ReenvioTest {
 						"Para", "lcastro@udc.es"), "De", "vvs@fic.udc.es"),
 				new Mensaje(new Texto("contido", "Contido do correo electrónico familiar 1.")));
 
-		Carpeta carpeta = new Carpeta("Carpeta");
-
 		correo.añadir(correo);
 	}
 
@@ -96,8 +94,6 @@ public class ReenvioTest {
 						"Para", "lcastro@udc.es"), "De", "vvs@fic.udc.es"),
 				new Mensaje(new Texto("contido", "Contido do correo electrónico familiar 1.")));
 
-		Carpeta carpeta = new Carpeta("Carpeta");
-
 		correo.eliminar(correo);
 	}
 
@@ -114,9 +110,7 @@ public class ReenvioTest {
 				new Cabecera(new Cabecera(new Mensaje(new Texto("contido", "Contido do correo electrónico persoal 1.")),
 						"Para", "lcastro@udc.es"), "De", "vvs@fic.udc.es"),
 				new Mensaje(new Texto("contido", "Contido do correo electrónico familiar 1.")));
-
-		Carpeta carpeta = new Carpeta("Carpeta");
-
+		
 		correo.obtenerHijo(0);
 	}
 
