@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class OperacionInvalidaTest {
+public class TestOperacionInvalida {
 
 	/**
 	 * Probamos que podemos crear una excepcion OperacionInvalida dandole un String

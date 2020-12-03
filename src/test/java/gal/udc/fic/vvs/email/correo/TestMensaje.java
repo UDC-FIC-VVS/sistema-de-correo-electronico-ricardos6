@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import gal.udc.fic.vvs.email.archivo.Texto;
 
-public class MensajeTest {
+public class TestMensaje {
 	
 	@Test
 	public void testLeidoYObtener() {

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import gal.udc.fic.vvs.email.archivo.Texto;
 
-public class CabeceraTest {
+public class TestCabecera {
 
 	/**
 	 * Obtenemos ruta de una Cabecera

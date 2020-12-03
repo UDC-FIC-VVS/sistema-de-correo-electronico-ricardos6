@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import gal.udc.fic.vvs.email.archivo.Texto;
 
-public class CarpetaTest {
+public class TestCarpeta {
 	
 	/**
 	 * Añadimos un mensaje a la carpeta y comprobamos su tamaño

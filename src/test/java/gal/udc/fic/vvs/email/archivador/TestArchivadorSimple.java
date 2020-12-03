@@ -8,7 +8,7 @@ import gal.udc.fic.vvs.email.archivo.Texto;
 import gal.udc.fic.vvs.email.correo.Correo;
 import gal.udc.fic.vvs.email.correo.Mensaje;
 
-public class ArchivadorSimpleTest {
+public class TestArchivadorSimple {
 	
 	@Test
 	public void testObtenerNombre() {

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import gal.udc.fic.vvs.email.archivo.Texto;
 
-public class ReenvioTest {
+public class TestReenvio {
 
 	/**
 	 * Obtener ruta de un reenvio
