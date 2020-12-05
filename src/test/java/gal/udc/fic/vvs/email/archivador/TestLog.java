@@ -8,81 +8,41 @@ import gal.udc.fic.vvs.email.archivo.Texto;
 import gal.udc.fic.vvs.email.correo.Correo;
 import gal.udc.fic.vvs.email.correo.Mensaje;
 
+/**
+ * @author r.sanchezarias6@gmail.com
+ *
+ */
 public class TestLog {
 
-	@Test
+	/**
+	 * Nivel da prueba: Unitaria
+	 * Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, negativas
+	 * Mecanismo de selección de los datos:
+	 * 		Categoria:
+	 * 			Strings cualesquiera. Como representate elegimos dos String
+	 * 			generados automaticamente.
+	 * 			-1 para el valor del espacio del ArchivadorSimple
+	 * 
+	 * Se espera que falle el almacenamiento del correo por el Log	
+	 * 
+	 */
+	@Test(expected = NullPointerException.class)
 	public void testLogAlmacenarCorreo() {
-		
-		String nombreArchivador = "Archivador";
-		int espacio = 25;
-		
-		Archivador archivador = new ArchivadorSimple(nombreArchivador, espacio);
+
+		String nombreArchivadorSimple = "Nombre Archivador Simple";
+		int espacioArchivadorSimple = -1;
+		String nombreTexto = "Nombre Texto";
+		String contenidoTexto = "Contenido Texto";
+
+		Archivador archivador = new ArchivadorSimple(nombreArchivadorSimple, espacioArchivadorSimple);
 		Delegado delegado = new Delegado(archivador);
-		
+
 		Log log = new Log(delegado);
-		
-		Texto texto = new Texto("Nombre Texto", "Contenido Texto");		
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		Correo correo = new Mensaje(texto);
-		
-		assertEquals(true, log.almacenarCorreo(correo));
-	}
-	
-	@Test
-	public void testLogAlmacenarCorreoYObtenerEspacioDisponible() {
-		
-		String nombreArchivador = "Archivador";
-		int espacio = 25;
-		
-		Archivador archivador = new ArchivadorSimple(nombreArchivador, espacio);
-		Delegado delegado = new Delegado(archivador);
-		
-		Log log = new Log(delegado);
-		
-		Texto texto = new Texto("Nombre Texto", "Contenido Texto");		
-		Correo correo = new Mensaje(texto);
-		
-		log.almacenarCorreo(correo);
-		
-		assertEquals(espacio - texto.obtenerTamaño(), log.obtenerEspacioDisponible());
-	}
-	
-	@Test
-	public void testLogObtenerNombre() {
-		
-		String nombreArchivador = "Archivador";
-		int espacio = 25;
-		
-		Archivador archivador = new ArchivadorSimple(nombreArchivador, espacio);
-		Delegado delegado = new Delegado(archivador);
-		
-		Log log = new Log(delegado);
-		
-		Texto texto = new Texto("Nombre Texto", "Contenido Texto");		
-		Correo correo = new Mensaje(texto);
-		
-		log.almacenarCorreo(correo);
-		
-		assertEquals(nombreArchivador, log.obtenerNombre());
-	}
-	
-	@Test
-	public void testLogEstablecerDelegadoObtenerDelegado() {
-		
-		String nombreArchivador = "Archivador";
-		int espacio = 25;
-		
-		Archivador archivador = new ArchivadorSimple(nombreArchivador, espacio);
-		Delegado delegado = new Delegado(archivador);
-		
-		Log log = new Log(delegado);
-		
-		Texto texto = new Texto("Nombre Texto", "Contenido Texto");		
-		Correo correo = new Mensaje(texto);
-		
-		log.almacenarCorreo(correo);
-	
-		log.establecerDelegado(delegado);
-		
-		assertEquals(delegado, log.obtenerDelegado());
+
+		assertEquals(false, log.almacenarCorreo(correo));
 	}
 }
