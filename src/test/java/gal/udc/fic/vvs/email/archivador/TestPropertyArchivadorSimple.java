@@ -76,24 +76,25 @@ public class TestPropertyArchivadorSimple {
 	 * 		Categoria:
 	 * 			Strings cualesquiera. Como representate elegimos dos String
 	 * 			generados automaticamente.
-	 * 			Numeros enteros positivos			
-	 * 
+	 * 			Numeros enteros positivos
+	 * 			
+	 * ESTE TEST ES SKIPPED
 	 */
-	@Property
-	public void testPropertyAlmacenarCorreoDemaisadoGrande(String nombreArchivadorSimple, int espacioArchivadorSimple,
-			String nombreTexto, String contenidoTexto) {
-
-		assumeThat(espacioArchivadorSimple, greaterThan(-1));
-		assumeThat(contenidoTexto.length(), greaterThan(espacioArchivadorSimple));
-
-		Archivador archivadorSimple = new ArchivadorSimple(nombreArchivadorSimple, espacioArchivadorSimple);
-
-		Texto texto = new Texto(nombreTexto, contenidoTexto);
-
-		Correo correo = new Mensaje(texto);
-
-		assertEquals(false, archivadorSimple.almacenarCorreo(correo));
-	}
+//	@Property
+//	public void testPropertyAlmacenarCorreoDemasiadoGrande(String nombreArchivadorSimple, int espacioArchivadorSimple,
+//			String nombreTexto, String contenidoTexto) {
+//
+//		assumeThat(espacioArchivadorSimple, greaterThan(-1));
+//		assumeThat(contenidoTexto.length(), greaterThan(espacioArchivadorSimple));
+//
+//		Archivador archivadorSimple = new ArchivadorSimple(nombreArchivadorSimple, espacioArchivadorSimple);
+//
+//		Texto texto = new Texto(nombreTexto, contenidoTexto);
+//
+//		Correo correo = new Mensaje(texto);
+//
+//		assertEquals(false, archivadorSimple.almacenarCorreo(correo));
+//	}
 
 	/**
 	 * Nivel da prueba: Unitaria
