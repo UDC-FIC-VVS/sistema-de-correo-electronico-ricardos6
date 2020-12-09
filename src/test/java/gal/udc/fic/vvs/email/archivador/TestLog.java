@@ -15,23 +15,23 @@ import gal.udc.fic.vvs.email.correo.Mensaje;
 public class TestLog {
 
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, negativas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria:
-	 * 			Strings cualesquiera. Como representate elegimos dos String
-	 * 			generados automaticamente.
-	 * 			-1 para el valor del espacio del ArchivadorSimple
 	 * 
-	 * Se espera que falle el almacenamiento del correo por el Log	
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * negativas</li>
+	 * </ul>
+	 * <p>
+	 * *
 	 * 
+	 * Corner case en el que el espacio del archivador es 0 y salta una excepcion al
+	 * intentar almacenar un correo con el delegado.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testLogAlmacenarCorreo() {
 
 		String nombreArchivadorSimple = "Nombre Archivador Simple";
-		int espacioArchivadorSimple = -1;
+		int espacioArchivadorSimple = 0;
 		String nombreTexto = "Nombre Texto";
 		String contenidoTexto = "Contenido Texto";
 

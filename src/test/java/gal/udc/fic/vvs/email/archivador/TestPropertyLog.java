@@ -21,15 +21,23 @@ import gal.udc.fic.vvs.email.correo.Mensaje;
 public class TestPropertyLog {
 
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria:
-	 * 			Strings cualesquiera. Como representate elegimos dos String
-	 * 			generados automaticamente.
-	 * 			Numeros enteros positivos generados automaticamentea		
 	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positivas</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * @param nombreArchivadorSimple  Categoria: String cualquiera. Representantes:
+	 *                                Generados automaticamente.
+	 * @param espacioArchivadorSimple Categoria: Enteros positivos. Representantes:
+	 *                                Generados automaticamente.
+	 * @param nombreTexto             Categoria: String cualquiera. Representantes:
+	 *                                Generados automaticamente.
+	 * @param contenidoTexto          Categoria: String cualquiera. Representantes:
+	 *                                Generados automaticamente.
 	 */
 	@Property
 	public void testPropertyLogAlmacenarCorreo(String nombreArchivadorSimple, int espacioArchivadorSimple,
@@ -48,19 +56,26 @@ public class TestPropertyLog {
 
 		assertEquals(true, log.almacenarCorreo(correo));
 	}
-	
-	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria:
-	 * 			Strings cualesquiera. Como representate elegimos dos String
-	 * 			generados automaticamente.
-	 * 			Numeros enteros positivos generados automaticamentea		
-	 * 
-	 */
 
+	/**
+	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positivas</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * @param nombreArchivadorSimple  Categoria: String cualquiera. Representantes:
+	 *                                Generados automaticamente.
+	 * @param espacioArchivadorSimple Categoria: Enteros positivos. Representantes:
+	 *                                Generados automaticamente.
+	 * @param nombreTexto             Categoria: String cualquiera. Representantes:
+	 *                                Generados automaticamente.
+	 * @param contenidoTexto          Categoria: String cualquiera. Representantes:
+	 *                                Generados automaticamente.
+	 */
 	@Property
 	public void testPropertyLogAlmacenarCorreoYObtenerEspacioDisponible(String nombreArchivadorSimple,
 			int espacioArchivadorSimple, String nombreTexto, String contenidoTexto) {
@@ -80,22 +95,29 @@ public class TestPropertyLog {
 
 		assertEquals(espacioArchivadorSimple - texto.obtenerTamaño(), log.obtenerEspacioDisponible());
 	}
-	
+
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria:
-	 * 			Strings cualesquiera. Como representate elegimos dos String
-	 * 			generados automaticamente.
-	 * 			Numeros enteros positivos generados automaticamentea		
 	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positivas</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * @param nombreArchivadorSimple  Categoria: String cualquiera. Representantes:
+	 *                                Generados automaticamente.
+	 * @param espacioArchivadorSimple Categoria: Enteros positivos. Representantes:
+	 *                                Generados automaticamente.
+	 * @param nombreTexto             Categoria: String cualquiera. Representantes:
+	 *                                Generados automaticamente.
+	 * @param contenidoTexto          Categoria: String cualquiera. Representantes:
+	 *                                Generados automaticamente.
 	 */
-	
 	@Property
-	public void testPropertyLogObtenerNombre(String nombreArchivadorSimple,
-			int espacioArchivadorSimple, String nombreTexto, String contenidoTexto) {
+	public void testPropertyLogObtenerNombre(String nombreArchivadorSimple, int espacioArchivadorSimple,
+			String nombreTexto, String contenidoTexto) {
 
 		assumeThat(espacioArchivadorSimple, greaterThan(-1));
 		assumeThat(espacioArchivadorSimple, greaterThan(contenidoTexto.length()));
@@ -112,17 +134,25 @@ public class TestPropertyLog {
 
 		assertEquals(nombreArchivadorSimple, log.obtenerNombre());
 	}
-	
+
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria:
-	 * 			Strings cualesquiera. Como representate elegimos dos String
-	 * 			generados automaticamente.
-	 * 			Numeros enteros positivos generados automaticamentea		
 	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positivas</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * @param nombreArchivadorSimple  Categoria: String cualquiera. Representantes:
+	 *                                Generados automaticamente.
+	 * @param espacioArchivadorSimple Categoria: Enteros positivos. Representantes:
+	 *                                Generados automaticamente.
+	 * @param nombreTexto             Categoria: String cualquiera. Representantes:
+	 *                                Generados automaticamente.
+	 * @param contenidoTexto          Categoria: String cualquiera. Representantes:
+	 *                                Generados automaticamente.
 	 */
 	@Property
 	public void testPropertyLogEstablecerDelegadoObtenerDelegado(String nombreArchivadorSimple,
@@ -135,11 +165,11 @@ public class TestPropertyLog {
 		Delegado delegado = new Delegado(archivador);
 
 		Log log = new Log(delegado);
-		
-		Texto texto = new Texto(nombreTexto, contenidoTexto);		
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		Correo correo = new Mensaje(texto);
-		
-		log.almacenarCorreo(correo);	
+
+		log.almacenarCorreo(correo);
 		log.establecerDelegado(delegado);
 
 		assertEquals(delegado, log.obtenerDelegado());
