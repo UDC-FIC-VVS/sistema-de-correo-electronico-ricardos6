@@ -2,6 +2,8 @@ package gal.udc.fic.vvs.email.correo;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.regex.PatternSyntaxException;
+
 import org.junit.Test;
 
 import gal.udc.fic.vvs.email.archivo.Archivo;
@@ -11,245 +13,236 @@ import gal.udc.fic.vvs.email.archivo.Texto;
 public class TestAdjunto {
 
 	/**
-	 * Obtenemos el tamaño de un correo con un audio y texto adjunto
-	 */
-	@Test
-	public void testObtenerTamaño() {
-
-		Texto texto = new Texto("nombre texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
-
-		Correo correo = new Adjunto(mensaje, archivo);
-
-		assertEquals(mensaje.obtenerTamaño() + archivo.obtenerTamaño(), correo.obtenerTamaño());
-	}
-
-	/**
-	 * Visualizacion de un correo con un memensaje con un audio adjunto
-	 */
-	@Test
-	public void testObtenerVisualizacion() {
-
-		Texto texto = new Texto("nombre texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
-
-		Correo correo = new Adjunto(mensaje, archivo);
-
-		assertEquals(mensaje.obtenerVisualizacion() + "\n\nAdxunto: " + archivo.obtenerPreVisualizacion(),
-				correo.obtenerVisualizacion());
-	}
-
-	/**
-	 * Ruta de un adjunto
-	 */
-	@Test
-	public void testObtenerRuta() {
-
-		Texto texto = new Texto("nombre texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
-
-		Correo correo = new Adjunto(mensaje, archivo);
-
-		assertEquals("Contenido texto...", correo.obtenerRuta());
-	}
-	
-	/**
-	 * Ruta de un adjunto dentro de una carpeta
 	 * 
-	 * @throws OperacionInvalida 
-	 */
-	@Test
-	public void testObtenerRutaConPadre() throws OperacionInvalida {
-
-		Texto texto = new Texto("nombre texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
-		Correo correo = new Adjunto(mensaje, archivo);
-		Carpeta carpeta = new Carpeta("carpeta");
-		carpeta.añadir(correo);
-		
-		assertEquals("carpeta (1) > Contenido texto...", correo.obtenerRuta());
-	}
-	
-	/**
-	 * Intentar explorar un correo correo adjunto
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * negativas</li>
+	 * </ul>
+	 * <p>
+	 * *
 	 * 
-	 * @throws OperacionInvalida 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param nombreAudio    Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param contenidoAudio Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
 	 * 
+	 * @throws OperacionInvalida
 	 */
 	@Test(expected = OperacionInvalida.class)
 	public void testExplorar() throws OperacionInvalida {
 
-		Texto texto = new Texto("nombre texto", "Contenido texto");
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreAudio = "nombreAudio";
+		String contenidoAudio = "contenidoAudio";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
+		Archivo archivo = new Audio(nombreAudio, contenidoAudio);
 
 		Correo correo = new Adjunto(mensaje, archivo);
 
 		correo.explorar();
 	}
-	
+
 	/**
-	 * Intentar aladir un correo al correo cn adjunto
 	 * 
-	 * @throws OperacionInvalida 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * negativas</li>
+	 * </ul>
+	 * <p>
+	 * *
 	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param nombreAudio    Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param contenidoAudio Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * 
+	 * @throws OperacionInvalida
 	 */
 	@Test(expected = OperacionInvalida.class)
 	public void testAñadir() throws OperacionInvalida {
 
-		Texto texto = new Texto("nombre texto", "Contenido texto");
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreAudio = "nombreAudio";
+		String contenidoAudio = "contenidoAudio";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
+		Archivo archivo = new Audio(nombreAudio, contenidoAudio);
+
 		Mensaje mensaje2 = new Mensaje(new Texto("", ""));
 
 		Correo correo = new Adjunto(mensaje, archivo);
 
 		correo.añadir(mensaje2);
 	}
-	
+
 	/**
-	 * Intentar eliminar un correo de un adjunto
-	 * pero un adjunto no puede tener hijos
 	 * 
-	 * @throws OperacionInvalida 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * negativas</li>
+	 * </ul>
+	 * <p>
+	 * *
 	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param nombreAudio    Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param contenidoAudio Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * 
+	 * @throws OperacionInvalida
 	 */
 	@Test(expected = OperacionInvalida.class)
 	public void testEliminar() throws OperacionInvalida {
 
-		Texto texto = new Texto("nombre texto", "Contenido texto");
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreAudio = "nombreAudio";
+		String contenidoAudio = "contenidoAudio";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
-		Mensaje mensaje2 = new Mensaje(new Texto("", ""));
+		Archivo archivo = new Audio(nombreAudio, contenidoAudio);
 
 		Correo correo = new Adjunto(mensaje, archivo);
 
-		correo.eliminar(mensaje2);
+		correo.eliminar(mensaje);
 	}
-	
+
 	/**
-	 * Intentar obtener hijo de un adjunto
 	 * 
-	 * @throws OperacionInvalida 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * negativas</li>
+	 * </ul>
+	 * <p>
+	 * *
 	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param nombreAudio    Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param contenidoAudio Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * 
+	 * @throws OperacionInvalida
 	 */
 	@Test(expected = OperacionInvalida.class)
 	public void testObtenerHijo() throws OperacionInvalida {
 
-		Texto texto = new Texto("nombre texto", "Contenido texto");
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreAudio = "nombreAudio";
+		String contenidoAudio = "contenidoAudio";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
+		Archivo archivo = new Audio(nombreAudio, contenidoAudio);
 
 		Correo correo = new Adjunto(mensaje, archivo);
 
 		correo.obtenerHijo(0);
 	}
-	
-	/**
-	 * Establecer como leido el adjunto
-	 * 
-	 * @throws OperacionInvalida 
-	 */
-	@Test
-	public void testEstablecerLeido() throws OperacionInvalida {
 
-		Texto texto = new Texto("nombre texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
-		Correo correo = new Adjunto(mensaje, archivo);
-		
-		correo.establecerLeido(true);
-		
-		assertEquals(0, correo.obtenerNoLeidos());
-	}
-	
 	/**
-	 * Obtener si esta como leido el adjunto
 	 * 
-	 * @throws OperacionInvalida 
-	 */
-	@Test
-	public void testObtenerNoLeidos() throws OperacionInvalida {
-
-		Texto texto = new Texto("nombre texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
-		Correo correo = new Adjunto(mensaje, archivo);
-		
-		assertEquals(1, correo.obtenerNoLeidos());
-	}
-	
-	/**
-	 * Obtener icono del adjunto cuando no esta leido
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positivas</li>
+	 * </ul>
+	 * <p>
+	 * *
 	 * 
-	 * @throws OperacionInvalida 
-	 */
-	@Test
-	public void testObtenerIcono() throws OperacionInvalida {
-
-		Texto texto = new Texto("nombre texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
-		Correo correo = new Adjunto(mensaje, archivo);
-		
-		assertEquals(Correo.ICONO_NUEVO_MENSAJE, correo.obtenerIcono());
-	}
-	
-	/**
-	 * Obtener previsualizacion de adjunto
+	 * No puedo probarlo con propiedades poqeu no podemos asegurar que el caracter
+	 * "(" no aparecera en el contenido del texto
 	 * 
-	 * @throws OperacionInvalida 
-	 */
-	@Test
-	public void testObtenerPreVisualizacion() throws OperacionInvalida {
-
-		Texto texto = new Texto("nombre texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
-		Correo correo = new Adjunto(mensaje, archivo);
-		
-		assertEquals("Contenido texto...", correo.obtenerPreVisualizacion());
-	}
-	
-	/**
-	 * Obtener padre de adjunto
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param nombreAudio    Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param contenidoAudio Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
 	 * 
-	 * @throws OperacionInvalida 
-	 */
-	@Test
-	public void testObtenePadre() throws OperacionInvalida {
-
-		Texto texto = new Texto("nombre texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
-		Correo correo = new Adjunto(mensaje, archivo);
-		Carpeta carpeta = new Carpeta("Carpeta");
-		
-		carpeta.añadir(correo);
-		
-		assertEquals(carpeta, correo.obtenerPadre());
-	}
-	
-	/**
-	 * Obtener padre de adjunto
-	 * 
-	 * @throws OperacionInvalida 
+	 * @throws OperacionInvalida, PatternSyntaxException
 	 */
 	@Test
 	public void testBuscar() throws OperacionInvalida {
 
-		Texto texto = new Texto("nombre texto", "Contenido texto");
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreAudio = "nombreAudio";
+		String contenidoAudio = "contenidoAudio";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		Archivo archivo = new Audio("nombre audio", "contenido audio");
+		Archivo archivo = new Audio(nombreAudio, contenidoAudio);
 		Correo correo = new Adjunto(mensaje, archivo);
-		Carpeta carpeta = new Carpeta("Carpeta");
-		
-		carpeta.añadir(correo);
-		
-		assertEquals(true, correo.buscar("texto").contains(correo));
+
+		assertEquals(true, correo.buscar(contenidoTexto).contains(correo));
+	}
+
+	/**
+	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * negativas</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * Este metodo devuuelve un error en el caso de que el contenido del texto
+	 * contenga el elemento (
+	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: Caracter
+	 *                       "(".
+	 * @param nombreAudio    Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param contenidoAudio Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * 
+	 * @throws OperacionInvalida, PatternSyntaxException
+	 */
+	@Test(expected = PatternSyntaxException.class)
+	public void testBuscarEspacios() throws OperacionInvalida {
+
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "(";
+		String nombreAudio = "nombreAudio";
+		String contenidoAudio = "contenidoAudio";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
+		MensajeAbstracto mensaje = new Mensaje(texto);
+		Archivo archivo = new Audio(nombreAudio, contenidoAudio);
+		Correo correo = new Adjunto(mensaje, archivo);
+
+		correo.buscar(contenidoTexto).contains(correo);
 	}
 }
