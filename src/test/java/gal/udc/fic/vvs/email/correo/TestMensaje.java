@@ -32,7 +32,7 @@ public class TestMensaje {
 		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
 
-		assertEquals(1, mensaje.buscar("+-").size());
+		assertEquals(0, mensaje.buscar("+-").size());
 		assertEquals(false, mensaje.buscar("+-").contains(mensaje));
 	}
 
