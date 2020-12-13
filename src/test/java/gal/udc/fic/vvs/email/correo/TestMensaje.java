@@ -7,67 +7,94 @@ import org.junit.Test;
 import gal.udc.fic.vvs.email.archivo.Texto;
 
 public class TestMensaje {
-	
+
+	/**
+	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * negativas</li>
+	 * </ul>
+	 * <p>
+	 * * Este test falla, no encuentra el String "+-"
+	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       pequeño.
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       "+-".
+	 */
 	@Test
-	public void testLeidoYObtener() {
-		
-		Texto texto = new Texto("Nombre Texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		
-		assertEquals(1, mensaje.obtenerNoLeidos());
-		
-		mensaje.establecerLeido(true);
-		
-		assertEquals(0, mensaje.obtenerNoLeidos());
-	}
-	
-	@Test
-	public void testObtenerTamaño() {
-		
-		Texto texto = new Texto("Nombre Texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		
-		assertEquals(texto.obtenerTamaño(), mensaje.obtenerTamaño());
-	}
-	
-	@Test
-	public void testObtenerIcono() {
-		
-		Texto texto = new Texto("Nombre Texto", "Contenido texto");
+	public void testBuscarStringNoValido() {
+
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "+-";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
 
-		assertEquals(Correo.ICONO_NUEVO_MENSAJE, mensaje.obtenerIcono());
-		
-		mensaje.establecerLeido(true);
-		
-		assertEquals(Correo.ICONO_MENSAJE, mensaje.obtenerIcono());
-	}
-	
-	@Test
-	public void testObtenerPreVisualizacion() {
-		
-		Texto texto = new Texto("Nombre Texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		
-		assertEquals("Contenido texto...", mensaje.obtenerPreVisualizacion());
+		assertEquals(1, mensaje.buscar("+-").size());
+		assertEquals(false, mensaje.buscar("+-").contains(mensaje));
 	}
 
-	@Test
-	public void testBuscar() {
-		
-		Texto texto = new Texto("Nombre Texto", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		
-		assertEquals(1, mensaje.buscar("texto").size());
-		assertEquals(true, mensaje.buscar("texto").contains(mensaje));
-	}
-	
+	/**
+	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positiva</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * Metodo buscar funciona correctamente al no encontrar un string que no esta
+	 * contenido en el mensaje.
+	 * 
+	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       "nombretexto".
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       "contenidoTexto".
+	 */
 	@Test
 	public void testBuscarNoEncuentra() {
-		
-		Texto texto = new Texto("Nombre Texto", "Contenido texto");
+
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		
+
 		assertEquals(true, mensaje.buscar("no encuentra").isEmpty());
+	}
+
+	/**
+	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positiva</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * No podemos usar propiedas por la existencia de algunas cadenas de caracteres
+	 * con las que el metodo no funciona bien.
+	 * 
+	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       "nombretexto".
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       "contenidoTexto".
+	 */
+	@Test
+	public void testBuscar() {
+
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
+		MensajeAbstracto mensaje = new Mensaje(texto);
+
+		assertEquals(true, mensaje.buscar("texto").contains(mensaje));
 	}
 }
