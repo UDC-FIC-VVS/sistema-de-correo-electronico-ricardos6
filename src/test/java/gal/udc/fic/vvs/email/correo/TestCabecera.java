@@ -2,6 +2,8 @@ package gal.udc.fic.vvs.email.correo;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.regex.PatternSyntaxException;
+
 import org.junit.Test;
 
 import gal.udc.fic.vvs.email.archivo.Texto;
@@ -9,220 +11,322 @@ import gal.udc.fic.vvs.email.archivo.Texto;
 public class TestCabecera {
 
 	/**
-	 * Obtenemos ruta de una Cabecera
-	 * Debe de devolvernos solo la previsualizacion del correo
+	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positivas</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * Probamos el comportamiento de ObtenerRuta en el caso de qe el contenido del
+	 * Texto sea vacio
+	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       "nombreTexto".
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       vacio.
+	 * @param nombreCabecera Categoria: String cualquiera. Representantes: String
+	 *                       "nombreCabecera".
+	 * @param valorCabecera  Categoria: String cualquiera. Representantes: String
+	 *                       "valorCabecera".
 	 */
 	@Test
 	public void testObtenerRuta() {
-		Texto texto = new Texto("Nombre", "Contenido texto");
+
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "";
+		String nombreCabecera = "nombreCabecera";
+		String valorCabecera = "valorCabecera";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, "Cabecera", "Numero 1");
-		
-		assertEquals("Contenido texto...", correo.obtenerRuta());
+		Correo correo = new Cabecera(mensaje, nombreCabecera, valorCabecera);
+
+		assertEquals("...", correo.obtenerRuta());
 	}
-	
+
 	/**
-	 * Obtenemos ruta de una Cabecera dentro de una carpeta
-	 * Debe de devolvernos la ruta de Carpeta (1) y dentro la cabecera
-	 */
-	@Test
-	public void testObtenerRutaConPadre() throws OperacionInvalida {
-		Texto texto = new Texto("Nombre", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, "Cabecera", "Numero 1");
-		Carpeta carpeta = new Carpeta("Carpeta");
-		carpeta.añadir(correo);
-		
-		assertEquals("Carpeta (1) > Contenido texto...", correo.obtenerRuta());
-	}
-	
-	/**
-	 * Intentamos explorar una cabecera
-	 * pero al no poder contener correos, la operacion es invalidaa
 	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * negativa</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * Esta operacion no esta permitida en la clase Cabecera
+	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       "nombreTexto".
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       vacio.
+	 * @param nombreCabecera Categoria: String cualquiera. Representantes: String
+	 *                       "nombreCabecera".
+	 * @param valorCabecera  Categoria: String cualquiera. Representantes: String
+	 *                       "valorCabecera".
+	 *
 	 * @throws OperacionInvalida
 	 */
 	@Test(expected = OperacionInvalida.class)
 	public void testExplorar() throws OperacionInvalida {
-		Texto texto = new Texto("Nombre", "Contenido texto");
+
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreCabecera = "nombreCabecera";
+		String valorCabecera = "valorCabecera";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, "Cabecera", "Numero 1");
-		
+		Correo correo = new Cabecera(mensaje, nombreCabecera, valorCabecera);
+
 		correo.explorar();
 	}
-	
+
 	/**
-	 * Intentamos añadir un correo a una cabecera
-	 * pero al no poder contener correos, la operacion es invalidaa
 	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * negativa</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * Esta operacion no esta permitida en la clase Cabecera
+	 * 
+	 * @param nombreTexto          Categoria: String cualquiera. Representantes:
+	 *                             String "nombreTexto".
+	 * @param contenidoTexto       Categoria: String cualquiera. Representantes:
+	 *                             String vacio.
+	 * @param nombreCabecera       Categoria: String cualquiera. Representantes:
+	 *                             String "nombreCabecera".
+	 * @param valorCabecera        Categoria: String cualquiera. Representantes:
+	 *                             String "valorCabecera".
+	 * @param nombreTextoAñadir    Categoria: String cualquiera. Representantes:
+	 *                             String "valorCabecera".
+	 * @param contenidoTextoAñadir Categoria: String cualquiera. Representantes:
+	 *                             String "valorCabecera".
+	 *
 	 * @throws OperacionInvalida
 	 */
 	@Test(expected = OperacionInvalida.class)
 	public void testAñadir() throws OperacionInvalida {
-		Texto texto = new Texto("Nombre", "Contenido texto");
+
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreCabecera = "nombreCabecera";
+		String valorCabecera = "valorCabecera";
+		String nombreTextoAñadir = "nombreTextoAñadir";
+		String contenidoTextoAñadir = "contenidoTextoAñadir";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, "Cabecera", "Numero 1");
-		
-		MensajeAbstracto mensajeAñadir = new Mensaje(new Texto("Mensaje a añadir", "Contenido mensaje a añadir"));
-		
+		Correo correo = new Cabecera(mensaje, nombreCabecera, valorCabecera);
+
+		MensajeAbstracto mensajeAñadir = new Mensaje(new Texto(nombreTextoAñadir, contenidoTextoAñadir));
+
 		correo.añadir(mensajeAñadir);
 	}
-	
+
 	/**
-	 * Intentamos eliminar un correo a una cabecera
-	 * pero al no poder contener correos, la operacion es invalidaa
 	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * negativa</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * Esta operacion no esta permitida en la clase Cabecera
+	 * 
+	 * @param nombreTexto          Categoria: String cualquiera. Representantes:
+	 *                             String "nombreTexto".
+	 * @param contenidoTexto       Categoria: String cualquiera. Representantes:
+	 *                             String vacio.
+	 * @param nombreCabecera       Categoria: String cualquiera. Representantes:
+	 *                             String "nombreCabecera".
+	 * @param valorCabecera        Categoria: String cualquiera. Representantes:
+	 *                             String "valorCabecera".
+	 * @param nombreTextoAñadir    Categoria: String cualquiera. Representantes:
+	 *                             String "valorCabecera".
+	 * @param contenidoTextoAñadir Categoria: String cualquiera. Representantes:
+	 *                             String "valorCabecera".
+	 *
 	 * @throws OperacionInvalida
 	 */
 	@Test(expected = OperacionInvalida.class)
 	public void testEliminar() throws OperacionInvalida {
-		Texto texto = new Texto("Nombre", "Contenido texto");
+
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreCabecera = "nombreCabecera";
+		String valorCabecera = "valorCabecera";
+		String nombreTextoAñadir = "nombreTextoAñadir";
+		String contenidoTextoAñadir = "contenidoTextoAñadir";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, "Cabecera", "Numero 1");
-		
-		MensajeAbstracto mensajeEliminar = new Mensaje(new Texto("Mensaje a añadir", "Contenido mensaje a añadir"));
-		
+		Correo correo = new Cabecera(mensaje, nombreCabecera, valorCabecera);
+
+		MensajeAbstracto mensajeEliminar = new Mensaje(new Texto(nombreTextoAñadir, contenidoTextoAñadir));
+
 		correo.eliminar(mensajeEliminar);
 	}
-	
+
 	/**
-	 * Intentamos obtener un hijo de una cabecera
-	 * pero al no poder contener correos, la operacion es invalidaa
 	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * negativa</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * Esta operacion no esta permitida en la clase Cabecera
+	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       "nombreTexto".
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       vacio.
+	 * @param nombreCabecera Categoria: String cualquiera. Representantes: String
+	 *                       "nombreCabecera".
+	 * @param valorCabecera  Categoria: String cualquiera. Representantes: String
+	 *                       "valorCabecera".
+	 *
 	 * @throws OperacionInvalida
 	 */
 	@Test(expected = OperacionInvalida.class)
 	public void testObtenerHijo() throws OperacionInvalida {
-		Texto texto = new Texto("Nombre", "Contenido texto");
+
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreCabecera = "nombreCabecera";
+		String valorCabecera = "valorCabecera";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, "Cabecera", "Numero 1");
-		
+		Correo correo = new Cabecera(mensaje, nombreCabecera, valorCabecera);
+
 		correo.obtenerHijo(0);
 	}
-	
+
 	/**
-	 * Obtenemos padre de una Cabecera
+	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * negativa</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * Porbamos que se obtiene null cuando intentas obtener el padre de un correo
+	 * adjunto que no tiene padre
+	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       "nombreTexto".
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       vacio.
+	 * @param nombreCabecera Categoria: String cualquiera. Representantes: String
+	 *                       "nombreCabecera".
+	 * @param valorCabecera  Categoria: String cualquiera. Representantes: String
+	 *                       "valorCabecera".
+	 *
+	 * @throws OperacionInvalida
 	 */
 	@Test
-	public void testObtenerPadre() throws OperacionInvalida {
-		Texto texto = new Texto("Nombre", "Contenido texto");
+	public void testObtenerPadreSiNoTiene() throws OperacionInvalida {
+
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreCabecera = "nombreCabecera";
+		String valorCabecera = "valorCabecera";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, "Cabecera", "Numero 1");
-		Carpeta carpeta = new Carpeta("Carpeta");
-		carpeta.añadir(correo);
-		
-		assertEquals(carpeta, correo.obtenerPadre());
+		Correo correo = new Cabecera(mensaje, nombreCabecera, valorCabecera);
+
+		assertEquals(null, correo.obtenerPadre());
 	}
-	
+
 	/**
-	 * Establecemos como leido una cabecera
+	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * negativa</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * La funcion Buscar() no permite busqueda con caracter "{"
+	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       "nombreTexto".
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       vacio.
+	 * @param nombreCabecera Categoria: String cualquiera. Representantes: String
+	 *                       "nombreCabecera".
+	 * @param valorCabecera  Categoria: String cualquiera. Representantes: String
+	 *                       "valorCabecera".
+	 *
+	 * @throws OperacionInvalida
 	 */
-	@Test
-	public void testEstablecerLeido() throws OperacionInvalida {
-		Texto texto = new Texto("Nombre", "Contenido texto");
+	@Test(expected = PatternSyntaxException.class)
+	public void testBuscarCaracterNoValido() throws OperacionInvalida {
+
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "{";
+		String nombreCabecera = "nombreCabecera";
+		String valorCabecera = "valorCabecera";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, "Cabecera", "Numero 1");
-		
-		assertEquals(1, correo.obtenerNoLeidos());
-		
-		correo.establecerLeido(true);
-		
-		assertEquals(0, correo.obtenerNoLeidos());
+		Correo correo = new Cabecera(mensaje, nombreCabecera, valorCabecera);
+
+		assertEquals(true, correo.buscar("{").contains(correo));
 	}
-	
+
 	/**
-	 * Obtenemos cabecera no leida
-	 */
-	@Test
-	public void testObtenerNoLeido() throws OperacionInvalida {
-		Texto texto = new Texto("Nombre", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, "Cabecera", "Numero 1");
-		
-		assertEquals(1, correo.obtenerNoLeidos());
-	}
-	
-	/**
-	 * Obtenemos tamaño de una cabecera
-	 * que es igual al tamaño del mensaje que tiene + el tamaño del nombre de la cabecera +
-	 * el tamaño del valor de la cabecera
-	 */
-	@Test
-	public void testObtenerTamaño() throws OperacionInvalida {
-		
-		String nombre = "Nombre Cabecera";
-		String valor = "Valor Cabecera";
-		
-		Texto texto = new Texto("Nombre", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, nombre, valor);
-		
-		assertEquals(mensaje.obtenerTamaño() + nombre.length() + valor.length(), correo.obtenerTamaño());
-	}
-	
-	/**
-	 * Obtenemos icono de una cabecera , que sera el icono de mensaje nuevo
-	 */
-	@Test
-	public void testObtenerIcono() throws OperacionInvalida {
-		
-		String nombre = "Nombre Cabecera";
-		String valor = "Valor Cabecera";
-		
-		Texto texto = new Texto("Nombre", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, nombre, valor);
-		
-		assertEquals(Correo.ICONO_NUEVO_MENSAJE, correo.obtenerIcono());
-	}
-	
-	/**
-	 * Obtenemos previcualizacion de una cabecera que sera el contenido del mensaje que contiene
-	 */
-	@Test
-	public void testObtenerPreVisualizacion() throws OperacionInvalida {
-		
-		String nombre = "Nombre Cabecera";
-		String valor = "Valor Cabecera";
-		
-		Texto texto = new Texto("Nombre", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, nombre, valor);
-		
-		assertEquals("Contenido texto...", correo.obtenerPreVisualizacion());
-	}
-	
-	/**
-	 * Obtenemos vicualizacion de una cabecera que sera la composicion de la visulizacion de la cabecera
-	 * + la visualizacion del mensaje
-	 */
-	@Test
-	public void testObtenerVisualizacion() throws OperacionInvalida {
-		
-		String nombre = "Nombre Cabecera";
-		String valor = "Valor Cabecera";
-		
-		Texto texto = new Texto("Nombre", "Contenido texto");
-		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, nombre, valor);
-		
-		assertEquals(nombre + ": " + valor + "\n" + mensaje.obtenerVisualizacion(), correo.obtenerVisualizacion());
-	}
-	
-	/**
-	 * Buscamos en la cabecera una keyword que aparezca en el contenido del mensjae que contiene la cabecera
-	 * y se devuelve la cabecera
+	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positiva</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * Probamos que siempre encuentra buscando por un sibstring del contenido del texto
+	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: String
+	 *                       "nombreTexto".
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: String
+	 *                       vacio.
+	 * @param nombreCabecera Categoria: String cualquiera. Representantes: String
+	 *                       "nombreCabecera".
+	 * @param valorCabecera  Categoria: String cualquiera. Representantes: String
+	 *                       "valorCabecera".
+	 *
+	 * @throws OperacionInvalida
 	 */
 	@Test
 	public void testBuscar() throws OperacionInvalida {
-		
-		String nombre = "Nombre Cabecera";
-		String valor = "Valor Cabecera";
-		
-		Texto texto = new Texto("Nombre", "Contenido texto");
+
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreCabecera = "nombreCabecera";
+		String valorCabecera = "valorCabecera";
+
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		MensajeAbstracto mensaje = new Mensaje(texto);
-		Correo correo = new Cabecera(mensaje, nombre, valor);
-		
-		assertEquals(true, correo.buscar("texto").contains(correo));
+		Correo correo = new Cabecera(mensaje, nombreCabecera, valorCabecera);
+
+		assertEquals(true, correo.buscar(contenidoTexto.substring(0, 2)).contains(correo));
 	}
 }
