@@ -7,14 +7,20 @@ import org.junit.Test;
 public class TestOperacionInvalida {
 
 	/**
-	 * Probamos que podemos crear una excepcion OperacionInvalida dandole un String
-	 * donde podemos especificar un mensaje y obtenerlo
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positivas</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
 	 */
 	@Test
 	public void test() {
-		
+
 		Exception e = new OperacionInvalida("Descripcion Operacion Invalida");
-		
+
 		assertEquals("Descripcion Operacion Invalida", e.getMessage());
 	}
 }
