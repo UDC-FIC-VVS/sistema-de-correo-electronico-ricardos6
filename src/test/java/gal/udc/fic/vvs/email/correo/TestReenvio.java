@@ -6,284 +6,197 @@ import org.junit.Test;
 
 import gal.udc.fic.vvs.email.archivo.Texto;
 
+/**
+ * @author r.sanchezarias6@gmail.com
+ *
+ */
 public class TestReenvio {
 
 	/**
-	 * Obtener ruta de un reenvio
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positivas</li>
+	 * </ul>
+	 * <p>
+	 * *
 	 * 
-	 */
-	@Test
-	public void testObtenerRuta() {
-
-		Correo correo = new Reenvio(
-				new Cabecera(new Cabecera(new Mensaje(new Texto("contido", "Contido do correo electrónico persoal 1.")),
-						"Para", "lcastro@udc.es"), "De", "vvs@fic.udc.es"),
-				new Mensaje(new Texto("contido", "Contido do correo electrónico familiar 1.")));
-
-		assertEquals("Contido do correo electrónico pe...", correo.obtenerRuta());
-	}
-
-	/**
-	 * Obtener ruta de un reenvio dentro de una carpeta
+	 * Operacion no valida de Reenvio
 	 * 
-	 * @throws OperacionInvalida
-	 * 
-	 */
-	@Test
-	public void testObtenerRutaConPadre() throws OperacionInvalida {
-
-		Correo correo = new Reenvio(
-				new Cabecera(new Cabecera(new Mensaje(new Texto("contido", "Contido do correo electrónico persoal 1.")),
-						"Para", "lcastro@udc.es"), "De", "vvs@fic.udc.es"),
-				new Mensaje(new Texto("contido", "Contido do correo electrónico familiar 1.")));
-
-		Carpeta carpeta = new Carpeta("Carpeta");
-		carpeta.añadir(correo);
-
-		assertEquals("Carpeta (1) > Contido do correo electrónico pe...", correo.obtenerRuta());
-	}
-
-	/**
-	 * Intentamos explorar un reenvio, no se puede
+	 * @param nombreTexto:    Categoria: String cualquiera. Representantes: String
+	 *                        "nombreTexto".
+	 * @param contenidoTexto: Categoria: String cualquiera. Representantes: String
+	 *                        "contenidoTexto.
+	 * @param nombreCabecera: Categoria: String cualquiera. Representantes: String
+	 *                        "nombreCabecera".
+	 * @param valorCabecera:  Categoria: String cualquiera. Representantes: String
+	 *                        "valorCabecera".
 	 * 
 	 * @throws OperacionInvalida
-	 * 
 	 */
 	@Test(expected = OperacionInvalida.class)
 	public void testExplorar() throws OperacionInvalida {
 
-		Correo correo = new Reenvio(
-				new Cabecera(new Cabecera(new Mensaje(new Texto("contido", "Contido do correo electrónico persoal 1.")),
-						"Para", "lcastro@udc.es"), "De", "vvs@fic.udc.es"),
-				new Mensaje(new Texto("contido", "Contido do correo electrónico familiar 1.")));
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreCabecera = "nombreCabercera";
+		String valorCabecera = "valorCabecera";
 
-		Carpeta carpeta = new Carpeta("Carpeta");
-		carpeta.añadir(correo);
+		MensajeAbstracto mensaje = new Mensaje(new Texto(nombreTexto, contenidoTexto));
+		Cabecera cabecera = new Cabecera(mensaje, nombreCabecera, valorCabecera);
+
+		Correo correo = new Reenvio(cabecera, mensaje);
 
 		correo.explorar();
 	}
 
 	/**
-	 * Intentamos añadir un correo al reenvio, no se puede
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positivas</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * Operacion no valida de Reenvio
+	 * 
+	 * @param nombreTexto:    Categoria: String cualquiera. Representantes: String
+	 *                        "nombreTexto".
+	 * @param contenidoTexto: Categoria: String cualquiera. Representantes: String
+	 *                        "contenidoTexto.
+	 * @param nombreCabecera: Categoria: String cualquiera. Representantes: String
+	 *                        "nombreCabecera".
+	 * @param valorCabecera:  Categoria: String cualquiera. Representantes: String
+	 *                        "valorCabecera".
 	 * 
 	 * @throws OperacionInvalida
-	 * 
 	 */
 	@Test(expected = OperacionInvalida.class)
 	public void testAñadir() throws OperacionInvalida {
 
-		Correo correo = new Reenvio(
-				new Cabecera(new Cabecera(new Mensaje(new Texto("contido", "Contido do correo electrónico persoal 1.")),
-						"Para", "lcastro@udc.es"), "De", "vvs@fic.udc.es"),
-				new Mensaje(new Texto("contido", "Contido do correo electrónico familiar 1.")));
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreCabecera = "nombreCabercera";
+		String valorCabecera = "valorCabecera";
+
+		MensajeAbstracto mensaje = new Mensaje(new Texto(nombreTexto, contenidoTexto));
+		Cabecera cabecera = new Cabecera(mensaje, nombreCabecera, valorCabecera);
+
+		Correo correo = new Reenvio(cabecera, mensaje);
 
 		correo.añadir(correo);
 	}
 
 	/**
-	 * Intentamos eliminar un correo de dentro de un reenvio, no se puede
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positivas</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * Operacion no valida de Reenvio
+	 * 
+	 * @param nombreTexto:    Categoria: String cualquiera. Representantes: String
+	 *                        "nombreTexto".
+	 * @param contenidoTexto: Categoria: String cualquiera. Representantes: String
+	 *                        "contenidoTexto.
+	 * @param nombreCabecera: Categoria: String cualquiera. Representantes: String
+	 *                        "nombreCabecera".
+	 * @param valorCabecera:  Categoria: String cualquiera. Representantes: String
+	 *                        "valorCabecera".
 	 * 
 	 * @throws OperacionInvalida
-	 * 
 	 */
 	@Test(expected = OperacionInvalida.class)
 	public void testEliminar() throws OperacionInvalida {
 
-		Correo correo = new Reenvio(
-				new Cabecera(new Cabecera(new Mensaje(new Texto("contido", "Contido do correo electrónico persoal 1.")),
-						"Para", "lcastro@udc.es"), "De", "vvs@fic.udc.es"),
-				new Mensaje(new Texto("contido", "Contido do correo electrónico familiar 1.")));
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreCabecera = "nombreCabercera";
+		String valorCabecera = "valorCabecera";
+
+		MensajeAbstracto mensaje = new Mensaje(new Texto(nombreTexto, contenidoTexto));
+		Cabecera cabecera = new Cabecera(mensaje, nombreCabecera, valorCabecera);
+
+		Correo correo = new Reenvio(cabecera, mensaje);
 
 		correo.eliminar(correo);
 	}
 
 	/**
-	 * Intentamos obtener hijo de dentro de un reenvio, no se puede
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positivas</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * Operacion no valida de Reenvio
+	 * 
+	 * @param nombreTexto:    Categoria: String cualquiera. Representantes: String
+	 *                        "nombreTexto".
+	 * @param contenidoTexto: Categoria: String cualquiera. Representantes: String
+	 *                        "contenidoTexto.
+	 * @param nombreCabecera: Categoria: String cualquiera. Representantes: String
+	 *                        "nombreCabecera".
+	 * @param valorCabecera:  Categoria: String cualquiera. Representantes: String
+	 *                        "valorCabecera".
 	 * 
 	 * @throws OperacionInvalida
-	 * 
 	 */
 	@Test(expected = OperacionInvalida.class)
 	public void testObtenerHijo() throws OperacionInvalida {
 
-		Correo correo = new Reenvio(
-				new Cabecera(new Cabecera(new Mensaje(new Texto("contido", "Contido do correo electrónico persoal 1.")),
-						"Para", "lcastro@udc.es"), "De", "vvs@fic.udc.es"),
-				new Mensaje(new Texto("contido", "Contido do correo electrónico familiar 1.")));
-		
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreCabecera = "nombreCabercera";
+		String valorCabecera = "valorCabecera";
+
+		MensajeAbstracto mensaje = new Mensaje(new Texto(nombreTexto, contenidoTexto));
+		Cabecera cabecera = new Cabecera(mensaje, nombreCabecera, valorCabecera);
+
+		Correo correo = new Reenvio(cabecera, mensaje);
+
 		correo.obtenerHijo(0);
 	}
 
 	/**
-	 * Obtener padre del reenvio
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positivas</li>
+	 * </ul>
+	 * <p>
+	 * *
 	 * 
-	 * @throws OperacionInvalida
-	 * 
+	 * @param nombreTexto    Categoria: String cualquiera. Representantes: Generados
+	 *                       automaticamente.
+	 * @param contenidoTexto Categoria: String cualquiera. Representantes: Generados
+	 *                       automaticamente.
+	 * @param nombreCabecera Categoria: String cualquiera. Representantes: Generados
+	 *                       automaticamente.
+	 * @param valorCabecera  Categoria: String cualquiera. Representantes: Generados
+	 *                       automaticamente.
 	 */
 	@Test
-	public void testObtenerPadre() throws OperacionInvalida {
+	public void testBuscar() {
 
-		Correo correo = new Reenvio(
-				new Cabecera(new Cabecera(new Mensaje(new Texto("contido", "Contido do correo electrónico persoal 1.")),
-						"Para", "lcastro@udc.es"), "De", "vvs@fic.udc.es"),
-				new Mensaje(new Texto("contido", "Contido do correo electrónico familiar 1.")));
+		String nombreTexto = "nombreTexto";
+		String contenidoTexto = "contenidoTexto";
+		String nombreCabecera = "nombreCabercera";
+		String valorCabecera = "valorCabecera";
 
-		Carpeta carpeta = new Carpeta("Carpeta");
-		carpeta.añadir(correo);
-
-		assertEquals(carpeta, correo.obtenerPadre());
-	}
-
-	/**
-	 * Establecer como leido un reenvio
-	 * 
-	 * @throws OperacionInvalida
-	 * 
-	 */
-	@Test
-	public void testEstablecerLeido() throws OperacionInvalida {
-
-		Correo correo = new Reenvio(
-				new Cabecera(new Cabecera(new Mensaje(new Texto("contido", "Contido do correo electrónico persoal 1.")),
-						"Para", "lcastro@udc.es"), "De", "vvs@fic.udc.es"),
-				new Mensaje(new Texto("contido", "Contido do correo electrónico familiar 1.")));
-
-		assertEquals(1, correo.obtenerNoLeidos());
-
-		correo.establecerLeido(true);
-
-		assertEquals(0, correo.obtenerNoLeidos());
-	}
-
-	/**
-	 * Obtener reenvio no leido
-	 * 
-	 * @throws OperacionInvalida
-	 * 
-	 */
-	@Test
-	public void testObtenerNoLeidos() throws OperacionInvalida {
-
-		Correo correo = new Reenvio(
-				new Cabecera(new Cabecera(new Mensaje(new Texto("contido", "Contido do correo electrónico persoal 1.")),
-						"Para", "lcastro@udc.es"), "De", "vvs@fic.udc.es"),
-				new Mensaje(new Texto("contido", "Contido do correo electrónico familiar 1.")));
-
-		assertEquals(1, correo.obtenerNoLeidos());
-	}
-
-	/**
-	 * Obtener tamaño de un reenvio
-	 * 
-	 * @throws OperacionInvalida
-	 * 
-	 */
-	@Test
-	public void testObtenerTamaño() throws OperacionInvalida {
-
-		Texto texto = new Texto("contido", "Contido do correo electrónico familiar 1.");
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
 		Mensaje mensaje = new Mensaje(texto);
+		Cabecera cabecera = new Cabecera(mensaje, nombreCabecera, valorCabecera);
 
-		Texto texto2 = new Texto("contido", "Contido do correo electrónico persoal 1.");
-		Mensaje mensaje2 = new Mensaje(texto2);
-		Cabecera cabecera = new Cabecera(mensaje2, "Para", "lcastro@udc.es");
-		Cabecera cabecera2 = new Cabecera(cabecera, "De", "vvs@fic.udc.es");
+		Correo correo = new Reenvio(cabecera, mensaje);
 
-		Correo correo = new Reenvio(cabecera2, mensaje);
-
-		assertEquals(mensaje.obtenerTamaño() + cabecera2.obtenerTamaño(), correo.obtenerTamaño());
-	}
-
-	/**
-	 * Obtener tamaño de un reenvio
-	 * 
-	 * @throws OperacionInvalida
-	 * 
-	 */
-	@Test
-	public void testObtenerIcono() throws OperacionInvalida {
-
-		Texto texto = new Texto("contido", "Contido do correo electrónico familiar 1.");
-		Mensaje mensaje = new Mensaje(texto);
-
-		Texto texto2 = new Texto("contido", "Contido do correo electrónico persoal 1.");
-		Mensaje mensaje2 = new Mensaje(texto2);
-		Cabecera cabecera = new Cabecera(mensaje2, "Para", "lcastro@udc.es");
-		Cabecera cabecera2 = new Cabecera(cabecera, "De", "vvs@fic.udc.es");
-
-		Correo correo = new Reenvio(cabecera2, mensaje);
-
-		assertEquals(Correo.ICONO_NUEVO_MENSAJE, correo.obtenerIcono());
-	}
-
-	/**
-	 * Obtener previsualizavcion de un reenvio
-	 * 
-	 * @throws OperacionInvalida
-	 * 
-	 */
-	@Test
-	public void testObtenerPreVisualizacion() throws OperacionInvalida {
-
-		Texto texto = new Texto("contido", "Contido do correo electrónico familiar 1.");
-		Mensaje mensaje = new Mensaje(texto);
-
-		Texto texto2 = new Texto("contido", "Contido do correo electrónico persoal 1.");
-		Mensaje mensaje2 = new Mensaje(texto2);
-		Cabecera cabecera = new Cabecera(mensaje2, "Para", "lcastro@udc.es");
-		Cabecera cabecera2 = new Cabecera(cabecera, "De", "vvs@fic.udc.es");
-
-		Correo correo = new Reenvio(cabecera2, mensaje);
-
-		assertEquals("Contido do correo electrónico pe...", correo.obtenerPreVisualizacion());
-	}
-
-	/**
-	 * Obtener visualizavcion de un reenvio
-	 * 
-	 * @throws OperacionInvalida
-	 * 
-	 */
-	@Test
-	public void testObtenerVisualizacion() throws OperacionInvalida {
-
-		Texto texto = new Texto("contido", "Contido do correo electrónico familiar 1.");
-		Mensaje mensaje = new Mensaje(texto);
-		
-		Texto texto2 = new Texto("contido", "Contido do correo electrónico persoal 1.");
-		Mensaje mensaje2 = new Mensaje(texto2);
-		Cabecera cabecera = new Cabecera(mensaje2, "Para", "lcastro@udc.es");
-		Cabecera cabecera2 = new Cabecera(cabecera, "De", "vvs@fic.udc.es");
-		
-		
-		Correo correo = new Reenvio(cabecera2, mensaje);
-
-		assertEquals(cabecera2.obtenerVisualizacion() +
-				"\n\n---- Correo reenviado ----\n\n" + mensaje.obtenerVisualizacion() + "\n---- Fin correo reenviado ----"
-		, correo.obtenerVisualizacion());
-	}
-	
-	/**
-	 * Busqueda de keywords en el contenido
-	 * 
-	 * @throws OperacionInvalida
-	 * 
-	 */
-	@Test
-	public void testBuscar() throws OperacionInvalida {
-
-		Texto texto = new Texto("contido", "Contido do correo electrónico familiar 1.");
-		Mensaje mensaje = new Mensaje(texto);
-		
-		Texto texto2 = new Texto("contido", "Contido do correo electrónico persoal 1.");
-		Mensaje mensaje2 = new Mensaje(texto2);
-		Cabecera cabecera = new Cabecera(mensaje2, "Para", "lcastro@udc.es");
-		Cabecera cabecera2 = new Cabecera(cabecera, "De", "vvs@fic.udc.es");
-		
-		
-		Correo correo = new Reenvio(cabecera2, mensaje);
-
-		assertEquals(true, correo.buscar("persoal").contains(correo));
-		assertEquals(1, correo.buscar("persoal").size());
+		assertEquals(true, correo.buscar(contenidoTexto.substring(1, 3)).contains(correo));
+		assertEquals(1, correo.buscar(contenidoTexto.substring(1, 3)).size());
 	}
 }
