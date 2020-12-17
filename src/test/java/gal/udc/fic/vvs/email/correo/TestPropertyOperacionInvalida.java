@@ -2,9 +2,9 @@ package gal.udc.fic.vvs.email.correo;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
 
 /**
@@ -26,7 +26,7 @@ public class TestPropertyOperacionInvalida {
 	 * @param descripcion Categoria: String cualquiera. Representantes: Generados
 	 *                    automaticamente.
 	 */
-	@Test
+	@Property
 	public void testPropertyOperacionInvalida(String descripcion) {
 
 		Exception e = new OperacionInvalida(descripcion);
