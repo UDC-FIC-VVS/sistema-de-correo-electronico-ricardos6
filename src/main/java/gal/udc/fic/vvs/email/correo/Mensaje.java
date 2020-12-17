@@ -52,7 +52,7 @@ public class Mensaje extends MensajeAbstracto {
         return resultado;
     }
 
-    private final static int TAMAÑO_PREVISUALIZACION = 32;
+    private static final int TAMAÑO_PREVISUALIZACION = 32;
     private boolean _leido;
     private Texto _contenido;
 

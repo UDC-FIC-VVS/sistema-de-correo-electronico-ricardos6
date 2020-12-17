@@ -13,29 +13,25 @@ import gal.udc.fic.vvs.email.correo.Mensaje;
  *
  */
 public class TestArchivadorSimple {
-	
+
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria:
-	 * 			Strings cualesquiera. Como representate elegimos dos String
-	 * 			generados automaticamente.
-	 * 			Corner case donde el espacio del archivadorSimple es negativo		
-	 * 
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente. Corner case donde el espacio del archivadorSimple
+	 * es negativo
 	 */
 	@Test
 	public void testAlmacenarCorreoEspacioNegativo() {
-		
+
 		String nombreArchivadorSimple = "Archivador Simple";
 		int espacio = -10;
 		Archivador archivadorSimple = new ArchivadorSimple(nombreArchivadorSimple, espacio);
-		
+
 		Texto texto = new Texto("Nombre Texto", "Contenido Texto");
-		
+
 		Correo correo = new Mensaje(texto);
-		
+
 		assertEquals(false, archivadorSimple.almacenarCorreo(correo));
 	}
 }

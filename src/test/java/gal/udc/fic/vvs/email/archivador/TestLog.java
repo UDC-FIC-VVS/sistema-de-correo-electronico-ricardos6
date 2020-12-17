@@ -15,7 +15,6 @@ import gal.udc.fic.vvs.email.correo.Mensaje;
 public class TestLog {
 
 	/**
-	 * 
 	 * <ul>
 	 * <li>Nivel da prueba: Unitaria</li>
 	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
@@ -23,7 +22,6 @@ public class TestLog {
 	 * </ul>
 	 * <p>
 	 * *
-	 * 
 	 * Corner case en el que el espacio del archivador es 0 y salta una excepcion al
 	 * intentar almacenar un correo con el delegado.
 	 */

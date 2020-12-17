@@ -1,17 +1,49 @@
 package gal.udc.fic.vvs.email.cliente;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Collection;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Vector;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ListModel;
+import javax.swing.WindowConstants;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import gal.udc.fic.vvs.email.archivador.Archivador;
 import gal.udc.fic.vvs.email.correo.Correo;
 import gal.udc.fic.vvs.email.correo.OperacionInvalida;
-import gal.udc.fic.vvs.email.archivador.Archivador;
-
-import java.util.*;
-import java.net.URL;
-import java.awt.*;
-import java.awt.geom.*;
-import java.awt.event.*;
-import javax.swing.*; 
-import javax.swing.border.*;
-import javax.swing.event.*;
 
 public class ClienteImp extends JFrame implements Cliente {
 
@@ -75,7 +107,7 @@ public class ClienteImp extends JFrame implements Cliente {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new Insets(5, 5, 5, 10);
+		gridBagConstraints.insets = new Insets(5, 5, 5, 10);
         panelExplorador.add(buttonRaizExplorador, gridBagConstraints);
         // Archivador
         JLabel labelArchivador = new JLabel("Arquivador");
@@ -117,10 +149,10 @@ public class ClienteImp extends JFrame implements Cliente {
                 if (e.getClickCount() == 2) {
                     int index = _editorListaCorreos.locationToIndex(e.getPoint());
                     ListModel dlm = _editorListaCorreos.getModel();
-                    Object item = dlm.getElementAt(index);;
+					Object item = dlm.getElementAt(index);
                     _editorListaCorreos.ensureIndexIsVisible(index);
                     if (item != null) {
-                        Correo correo = ((CorreoItem)item).getCorreo();
+						Correo correo = ((CorreoItem) item).getCorreo();
                         _editorRutaExplorador.setText("Ruta: -");
                         explorarCorreo(correo);
                     }
@@ -406,7 +438,7 @@ public class ClienteImp extends JFrame implements Cliente {
     private Correo obtenerCorreoExploradorSeleccionado() {
         Object value = _editorListaCorreos.getSelectedValue();
         if (value != null) {
-            return ((CorreoItem)value).getCorreo();
+			return ((CorreoItem) value).getCorreo();
         }
         return null;
     }
@@ -414,7 +446,7 @@ public class ClienteImp extends JFrame implements Cliente {
     private Correo obtenerCorreoBuscadorSeleccionado() {
         Object value = _editorListaCorreosEncontrados.getSelectedValue();
         if (value != null) {
-            return ((CorreoItem)value).getCorreo();
+			return ((CorreoItem) value).getCorreo();
         }
         return null;
     }
@@ -436,11 +468,11 @@ public class ClienteImp extends JFrame implements Cliente {
     }
 
     private void actualizarExplorador(Collection correos) {
-        DefaultListModel model = (DefaultListModel)_editorListaCorreos.getModel();
+		DefaultListModel model = (DefaultListModel) _editorListaCorreos.getModel();
         model.clear();
         Iterator iCorreos = correos.iterator();
         while(iCorreos.hasNext()) {
-            model.addElement(new CorreoItem((Correo)iCorreos.next()));
+			model.addElement(new CorreoItem((Correo) iCorreos.next()));
         }
     }
 
@@ -498,10 +530,10 @@ public class ClienteImp extends JFrame implements Cliente {
 			_iconos.put(Correo.ICONO_NUEVO_MENSAJE_CON_ADJUNTOS, new ImageIcon(getClass().getClassLoader().getResource("nuevo_mensaje_con_adjuntos.png")));
         }
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean hasFocus) {
-            JLabel label = (JLabel)super.getListCellRendererComponent(list, value, index, isSelected, hasFocus);
+			JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, hasFocus);
             if (value instanceof CorreoItem) {
-                CorreoItem correoItem = (CorreoItem)value;
-                label.setIcon((ImageIcon)_iconos.get(correoItem.getCorreo().obtenerIcono()));
+				CorreoItem correoItem = (CorreoItem) value;
+				label.setIcon((ImageIcon) _iconos.get(correoItem.getCorreo().obtenerIcono()));
             } else {
                 // Clear old icon
                 label.setIcon(null);
@@ -527,7 +559,7 @@ public class ClienteImp extends JFrame implements Cliente {
         public void actionPerformed(ActionEvent event) {
             Correo correo = obtenerCorreoExploradorSeleccionado();
             if (correo != null) {
-                Archivador archivador = ((ArchivadorItem)_editorArchivador.getSelectedItem()).getArchivador();
+				Archivador archivador = ((ArchivadorItem) _editorArchivador.getSelectedItem()).getArchivador();
                 if (!archivador.almacenarCorreo(correo)) {
                     JOptionPane.showMessageDialog(ClienteImp.this, "Non foi posible arquivar o correo", null, JOptionPane.ERROR_MESSAGE);
                 }
@@ -559,11 +591,11 @@ public class ClienteImp extends JFrame implements Cliente {
         }
         public void actionPerformed(ActionEvent event) {
             Collection correos = _correo.buscar(_editorSubcadenaBusqueda.getText());
-            DefaultListModel model = (DefaultListModel)_editorListaCorreosEncontrados.getModel();
+			DefaultListModel model = (DefaultListModel) _editorListaCorreosEncontrados.getModel();
             model.clear();
             Iterator iCorreos = correos.iterator();
             while(iCorreos.hasNext()) {
-                model.addElement(new CorreoItem((Correo)iCorreos.next()));
+				model.addElement(new CorreoItem((Correo) iCorreos.next()));
             }
         }
     }
@@ -573,8 +605,8 @@ public class ClienteImp extends JFrame implements Cliente {
             putValue(Action.NAME, "Establecer");
         }
 	public void actionPerformed(ActionEvent event) {
-            Archivador a1 = ((ArchivadorItem)_editorArchivadorOrigen.getSelectedItem()).getArchivador();
-            Archivador a2 = ((ArchivadorItem)_editorArchivadorDelegado.getSelectedItem()).getArchivador();
+		Archivador a1 = ((ArchivadorItem) _editorArchivadorOrigen.getSelectedItem()).getArchivador();
+		Archivador a2 = ((ArchivadorItem) _editorArchivadorDelegado.getSelectedItem()).getArchivador();
             if (a1 != null) {
                 a1.establecerDelegado(a2);
             }
@@ -589,10 +621,14 @@ public class ClienteImp extends JFrame implements Cliente {
             _editorTextoEstadoCadena.setText("");
             Iterator iArchivadores = _archivadores.iterator();
             while(iArchivadores.hasNext()) {
-                Archivador a = (Archivador)iArchivadores.next();
+				Archivador a = (Archivador) iArchivadores.next();
                 Archivador suc = a.obtenerDelegado();
-                _editorTextoEstadoCadena.append(a.obtenerNombre() + " (" + a.obtenerEspacioDisponible() + "/" + a.obtenerEspacioTotal() + ") ->" +
-                                                (suc==null ? " -" : suc.obtenerNombre() + "(" + suc.obtenerEspacioDisponible() + "/" + suc.obtenerEspacioTotal() + ")"));
+				_editorTextoEstadoCadena.append(a.obtenerNombre() + " (" + a.obtenerEspacioDisponible() + "/"
+						+ a.obtenerEspacioTotal() + ") ->"
+						+
+						(suc == null ? " -"
+								: suc.obtenerNombre() + "(" + suc.obtenerEspacioDisponible() + "/"
+										+ suc.obtenerEspacioTotal() + ")"));
                 _editorTextoEstadoCadena.append("\n");
             }
         }
@@ -601,12 +637,18 @@ public class ClienteImp extends JFrame implements Cliente {
     private Correo _correo;
     private Vector _archivadores;
     private JTabbedPane _panelTabbed;
-    private JList _editorListaCorreos, _editorListaCorreosEncontrados;
-    private JLabel _editorRutaExplorador, _editorRutaBuscador;
+	private JList _editorListaCorreos;
+	private JList _editorListaCorreosEncontrados;
+    private JLabel _editorRutaExplorador;
+    private JLabel _editorRutaBuscador;
     private JPopupMenu _menuExplorador;
-    private JTextArea _editorTextoVisualizacionExplorador, _editorTextoVisualizacionBuscador, _editorTextoEstadoCadena;
+    private JTextArea _editorTextoVisualizacionExplorador;
+    private JTextArea _editorTextoVisualizacionBuscador;
+    private JTextArea _editorTextoEstadoCadena;
     private JTextField _editorSubcadenaBusqueda;
-    private JComboBox _editorArchivadorOrigen, _editorArchivadorDelegado, _editorArchivador;
+    private JComboBox _editorArchivadorOrigen;
+    private JComboBox _editorArchivadorDelegado;
+    private JComboBox _editorArchivador;
     private ActionEstablecerArchivadorDelegado _actionEstablecerArchivadorDelegado;
     private ActionConsultarEstadoCadena _actionConsultarEstadoCadena;
 

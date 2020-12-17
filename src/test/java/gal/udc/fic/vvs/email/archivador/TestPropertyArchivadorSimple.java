@@ -21,14 +21,10 @@ import gal.udc.fic.vvs.email.correo.Mensaje;
 public class TestPropertyArchivadorSimple {
 
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria:
-	 * 			Strings cualesquiera. Como representate elegimos dos String
-	 * 			generados automaticamente.
-	 * 			Numeros enteros positivos			
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente. Numeros enteros positivos
 	 * 
 	 */
 	@Property
@@ -40,16 +36,12 @@ public class TestPropertyArchivadorSimple {
 
 		assertEquals(nombre, archivadorSimple.obtenerNombre());
 	}
-	
+
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria:
-	 * 			Strings cualesquiera. Como representate elegimos dos String
-	 * 			generados automaticamente.
-	 * 			Numeros enteros positivos			
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente. Numeros enteros positivos
 	 * 
 	 */
 	@Property
@@ -67,17 +59,13 @@ public class TestPropertyArchivadorSimple {
 
 		assertEquals(true, archivadorSimple.almacenarCorreo(correo));
 	}
-	
+
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria:
-	 * 			Strings cualesquiera. Como representate elegimos dos String
-	 * 			generados automaticamente.
-	 * 			Numeros enteros positivos
-	 * 			
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente. Numeros enteros positivos
+	 * 
 	 * ESTE TEST ES SKIPPED
 	 */
 //	@Property
@@ -97,14 +85,11 @@ public class TestPropertyArchivadorSimple {
 //	}
 
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria:
-	 * 			Strings cualesquiera. Como representate elegimos dos String
-	 * 			generados automaticamente.
-	 * 			Numeros enteros positivos generados automaticamente		
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente. Numeros enteros positivos generados
+	 * automaticamente
 	 * 
 	 */
 	@Property
@@ -114,48 +99,41 @@ public class TestPropertyArchivadorSimple {
 
 		assertEquals(espacio, archivadorSimple.obtenerEspacioDisponible());
 	}
-	
+
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria:
-	 * 			Strings cualesquiera. Como representate elegimos dos String
-	 * 			generados automaticamente.
-	 * 			Numeros enteros positivos generados automaticamente		
-	 * 
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente. Numeros enteros positivos generados
+	 * automaticamente
 	 */
 	@Property
 	public void testPropertyObtenerEspacioTotal(String nombre, int espacio) {
 
 		assumeThat(espacio, greaterThan(-1));
-		
+
 		Archivador archivadorSimple = new ArchivadorSimple(nombre, espacio);
-		
+
 		assertEquals(espacio, archivadorSimple.obtenerEspacioTotal());
 	}
-	
+
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria:
-	 * 			Strings cualesquiera. Como representate elegimos dos String
-	 * 			generados automaticamente.
-	 * 			Numeros enteros positivos generados automaticamente		
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente. Numeros enteros positivos generados
+	 * automaticamente
 	 * 
 	 */
 	@Property
 	public void testPropertyObtenerDelegado(String nombre, int espacio) {
-		
+
 		assumeThat(espacio, greaterThan(-1));
-		
+
 		Archivador archivador = new ArchivadorSimple(nombre, espacio);
-		
+
 		archivador.establecerDelegado(archivador);
-		
+
 		assertEquals(null, archivador.obtenerDelegado());
 	}
 }

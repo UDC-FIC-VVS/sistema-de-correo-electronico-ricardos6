@@ -83,7 +83,7 @@ public class Carpeta extends CorreoAbstracto {
     }
 
     public Correo obtenerHijo(int n) throws OperacionInvalida {
-	return ((Correo)_hijos.elementAt(n));
+		return ((Correo) _hijos.elementAt(n));
 
     }
 

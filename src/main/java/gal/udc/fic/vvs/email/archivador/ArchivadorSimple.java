@@ -41,7 +41,8 @@ public class ArchivadorSimple implements Archivador {
 	}
 
 	private String _nombre;
-	private int _espacioTotal, _espacioDisponible;
+	private int _espacioTotal;
+	private int _espacioDisponible;
 	private Vector _correos;
 
 }

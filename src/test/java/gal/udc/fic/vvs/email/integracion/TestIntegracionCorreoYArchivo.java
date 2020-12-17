@@ -2,8 +2,6 @@ package gal.udc.fic.vvs.email.integracion;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Collection;
-
 import org.junit.runner.RunWith;
 
 import com.pholser.junit.quickcheck.Property;
@@ -194,7 +192,7 @@ public class TestIntegracionCorreoYArchivo {
 	@Property
 	public void testIntegracionObtenerNoLeidos(String nombreCarpetaRaiz, String nombreCarpetaHijo1,
 			String nombreCarpetaHijo2, String nombreCarpetaHijo3, String nombreTextoRaiz, String contenidoTextoRaiz,
-			String nombreTextoHijo1, String contenidoTextoHijo1, String nombreTextoHijo3, String contenidoTextoHijo3,
+		 String nombreTextoHijo1, String contenidoTextoHijo1, String nombreTextoHijo3, String contenidoTextoHijo3,
 			String nombreAudio, String contenidoAudio) throws OperacionInvalida {
 
 		Carpeta raiz = new Carpeta(nombreCarpetaRaiz);

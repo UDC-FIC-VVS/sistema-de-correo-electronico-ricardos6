@@ -113,7 +113,6 @@ public class TestPropertyCarpeta {
 
 		carpeta.añadir(mensaje);
 		carpeta.establecerLeido(true);
-		;
 
 		assertEquals(0, carpeta.obtenerNoLeidos());
 	}
