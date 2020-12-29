@@ -7,6 +7,10 @@ import org.junit.runner.RunWith;
 import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
 
+import etm.core.configuration.BasicEtmConfigurator;
+import etm.core.configuration.EtmManager;
+import etm.core.monitor.EtmMonitor;
+import etm.core.renderer.SimpleTextRenderer;
 import gal.udc.fic.vvs.email.archivo.Archivo;
 import gal.udc.fic.vvs.email.archivo.Audio;
 import gal.udc.fic.vvs.email.archivo.Texto;
@@ -23,6 +27,9 @@ import gal.udc.fic.vvs.email.correo.OperacionInvalida;
  */
 @RunWith(JUnitQuickcheck.class)
 public class TestIntegracionCorreoYArchivo {
+	
+	//JETM
+	private static EtmMonitor monitor;
 
 	/**
 	 * <ul>
@@ -194,6 +201,9 @@ public class TestIntegracionCorreoYArchivo {
 			String nombreCarpetaHijo2, String nombreCarpetaHijo3, String nombreTextoRaiz, String contenidoTextoRaiz,
 		 String nombreTextoHijo1, String contenidoTextoHijo1, String nombreTextoHijo3, String contenidoTextoHijo3,
 			String nombreAudio, String contenidoAudio) throws OperacionInvalida {
+		
+		// JETM
+		setup();
 
 		Carpeta raiz = new Carpeta(nombreCarpetaRaiz);
 		Carpeta hijo1 = new Carpeta(nombreCarpetaHijo1);
@@ -211,9 +221,25 @@ public class TestIntegracionCorreoYArchivo {
 		hijo1.añadir(hijo3);
 		raiz.añadir(hijo1);
 		raiz.añadir(hijo2);
+		
+		// visualize results
+	    monitor.render(new SimpleTextRenderer());
+
+	    // shutdown measurement framework
+	    tearDown();
 
 		correoHijo3.establecerLeido(true);
 
 		assertEquals(2, raiz.obtenerNoLeidos());
 	}
+	
+	private static void setup() {
+	    BasicEtmConfigurator.configure();
+	    monitor = EtmManager.getEtmMonitor();
+	    monitor.start();
+	  }
+
+	  private static void tearDown() {
+	    monitor.stop();
+	  }
 }
