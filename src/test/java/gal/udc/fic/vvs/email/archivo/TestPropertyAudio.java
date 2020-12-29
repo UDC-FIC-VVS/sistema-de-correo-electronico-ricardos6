@@ -16,12 +16,10 @@ import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
 public class TestPropertyAudio {
 
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria: Strings cualesquiera. Como representate elegimos dos String
-	 * 		generados automaticamente.
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente.
 	 * 
 	 */
 	@Property
@@ -33,12 +31,10 @@ public class TestPropertyAudio {
 	}
 
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria: Strings cualesquiera. Como representate elegimos dos String
-	 * 		generados automaticamente.
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente.
 	 * 
 	 */
 	@Property
@@ -50,12 +46,10 @@ public class TestPropertyAudio {
 	}
 
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria: Strings cualesquiera. Como representate elegimos dos String
-	 * 		generados automaticamente.
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente.
 	 * 
 	 */
 	@Property
@@ -67,12 +61,10 @@ public class TestPropertyAudio {
 	}
 
 	/**
-	 * Nivel da prueba: Unitaria
-	 * Categorías a las que pertenece: Funcionales
-	 * dinámicas de caja negra, positivas
-	 * Mecanismo de selección de los datos:
-	 * 		Categoria: Strings cualesquiera. Como representate elegimos dos String
-	 * 		generados automaticamente.
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente.
 	 * 
 	 */
 	@Property
@@ -82,5 +74,20 @@ public class TestPropertyAudio {
 
 		assertEquals(nombre + "(" + archivo.obtenerTamaño() + " bytes, " + archivo.obtenerMimeType() + ")",
 				archivo.obtenerPreVisualizacion());
+	}
+
+	/**
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente.
+	 * 
+	 */
+	@Property
+	public void testPropertyObtenerMime(String nombre, String contenido) {
+
+		Archivo archivo = new Audio(nombre, contenido);
+
+		assertEquals("audio/ogg", archivo.obtenerMimeType());
 	}
 }

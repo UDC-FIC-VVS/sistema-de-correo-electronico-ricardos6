@@ -79,4 +79,19 @@ public class TestPropertyTexto {
 		assertEquals(nombre + "(" + archivo.obtenerTamaño() + " bytes, " + archivo.obtenerMimeType() + ")",
 				archivo.obtenerPreVisualizacion());
 	}
+	
+	/**
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente.
+	 * 
+	 */
+	@Property
+	public void testPropertyObtenerMime(String nombre, String contenido) {
+
+		Archivo archivo = new Texto(nombre, contenido);
+
+		assertEquals("text/plain", archivo.obtenerMimeType());
+	}
 }
