@@ -83,6 +83,43 @@ public class TestPropertyCarpeta {
 
 		assertEquals(mensaje.obtenerTamaño(), carpetaPadre.obtenerTamaño());
 	}
+	
+	/**
+	 * 
+	 * <ul>
+	 * <li>Nivel da prueba: Unitaria</li>
+	 * <li>Categorías a las que pertenece: Funcionales dinámicas de caja negra,
+	 * positivas</li>
+	 * </ul>
+	 * <p>
+	 * *
+	 * 
+	 * @param nombreCarpeta      Categoria: String cualquiera. Representantes:
+	 *                           Generados automaticamente.
+	 * @param nombreTexto        Categoria: String cualquiera. Representantes:
+	 *                           Generados automaticamente.
+	 * @param contenidoTexto     Categoria: String cualquiera. Representantes:
+	 *                           Generados automaticamente.
+	 * @param nombreCarpetaPadre Categoria: String cualquiera. Representantes:
+	 *                           Generados automaticamente.
+	 * 
+	 * @throws OperacionInvalida
+	 */
+	@Property
+	public void testPropertyAñadirCarpetaHijoConCarpeta(String nombreCarpeta, String nombreTexto, String contenidoTexto,
+			String nombreCarpetaPadre) throws OperacionInvalida {
+
+		Carpeta carpeta = new Carpeta(nombreCarpeta);
+		Carpeta carpetaPadre = new Carpeta(nombreCarpetaPadre);
+		Texto texto = new Texto(nombreTexto, contenidoTexto);
+		MensajeAbstracto mensaje = new Mensaje(texto);
+
+		carpeta.añadir(mensaje);
+		carpetaPadre.añadir(mensaje);
+
+		assertEquals(mensaje.obtenerTamaño(), carpetaPadre.obtenerTamaño());
+		assertEquals(0, carpeta.obtenerTamaño());
+	}
 
 	/**
 	 * 
@@ -299,6 +336,7 @@ public class TestPropertyCarpeta {
 		carpeta.eliminar(mensaje);
 
 		assertEquals(false, carpeta.explorar().contains(mensaje));
+		assertEquals(null, mensaje.obtenerPadre());
 	}
 
 	/**
