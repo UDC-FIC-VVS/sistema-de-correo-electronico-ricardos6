@@ -34,4 +34,27 @@ public class TestArchivadorSimple {
 
 		assertEquals(false, archivadorSimple.almacenarCorreo(correo));
 	}
+	
+	/**
+	 * Nivel da prueba: Unitaria Categorías a las que pertenece: Funcionales
+	 * dinámicas de caja negra, positivas Mecanismo de selección de los datos:
+	 * Categoria: Strings cualesquiera. Como representate elegimos dos String
+	 * generados automaticamente. Corner case donde el espacio del archivadorSimple
+	 * es negativo
+	 */
+	@Test
+	public void testAlmacenarCorreoEspacioNoSuficiente() {
+
+		String nombreArchivadorSimple = "Archivador Simple";
+		int espacio = 1;
+		Archivador archivadorSimple = new ArchivadorSimple(nombreArchivadorSimple, espacio);
+
+		Texto texto = new Texto("Nombre Texto", "Contenido Texto");
+
+		Correo correo = new Mensaje(texto);
+		
+		
+		assertEquals(false, archivadorSimple.almacenarCorreo(correo));
+		assertEquals(1, archivadorSimple.obtenerEspacioDisponible());
+	}
 }
