@@ -11,7 +11,7 @@ public abstract class Archivo {
         return _nombre;
     }
 
-    public String obtenerContenido() {
+	public String obtenerContenido() {
         return _contenido;
     }
 

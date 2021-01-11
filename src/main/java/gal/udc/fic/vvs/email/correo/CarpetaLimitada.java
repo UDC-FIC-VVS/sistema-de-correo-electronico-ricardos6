@@ -48,7 +48,7 @@ public class CarpetaLimitada extends CorreoAbstracto {
             resultado.add(this);
         }
         Iterator iResultado = resultado.iterator();
-        for(int i=0; iResultado.hasNext(); i++) {
+		for (int i = 0; iResultado.hasNext(); i++) {
             iResultado.next();
             if (i > _tamaño) {
                 iResultado.remove();
